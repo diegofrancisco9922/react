@@ -1,0 +1,7 @@
+[Desktop Entry]
+ Version=1.0
+ Name=utorrent
+ Exec=sudo /opt/utorrent/./utserver
+ Icon=/opt/utorrent/utorrent.png
+ Type=Application
+ Categories=Application
