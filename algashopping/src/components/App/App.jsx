@@ -6,6 +6,8 @@ import ShoppingList from "../ShoppingList";
 import {Container, Wrapper} from './App.styles'
 import productsMock from '../../mocks/products.json'
 import extractPercentage from "../../utils/extractPercentage";
+import Calculator from "../Calculator";
+
 
 
 function App () {
@@ -59,7 +61,7 @@ function App () {
                 />}
                 
             right= {<div>
-                estatisticas
+                Estatisticas
 
                 <LineChart 
                 color={colors[0]}
@@ -108,6 +110,8 @@ function App () {
                             currency: 'BRL'
                         })}
                     </div>
+
+                   <Calculator />
                 </div>
 
                 

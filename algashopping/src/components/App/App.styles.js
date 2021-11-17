@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import bg from '../../assets/bg.svg'
+import React, {Component} from 'react';
+
 
 export const Wrapper = styled.div`
     height: 100vh;
@@ -21,3 +23,4 @@ export const Container = styled.div`
     box-shadow: 0 3px 10px rgba(0,0,0,.15);
     border-radius: 20px;
 `
+
