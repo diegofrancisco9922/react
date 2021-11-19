@@ -4,43 +4,28 @@ import AppContainer from "../AppContainer";
 import AppHeader from "../AppHeader/AppHeader";
 import ShoppingList from "../ShoppingList";
 import {Container, Wrapper} from './App.styles'
-import productsMock from '../../mocks/products.json'
 import extractPercentage from "../../utils/extractPercentage";
 import Calculator from "../Calculator";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAllProducts, selectSelectedProducts, selectSelectedProductTotalPrice } from "../../store/Products/products.selectors";
+import { toggleProduct } from "../../store/Products/Products.actions";
 
 
 
 function App () {
+    const dispatch = useDispatch();
     const colors = ['#62CBC6', '#00ABAD', '#00858C', '#006073', '#004D61']
 
-    const [products, setProducts] = useState(productsMock.products)
-    const [SelectedProducts, SetSelectedProducts] = useState([])
-    const [totalPrice, setTotalPrice] = useState(0)
+    const SelectedProducts = useSelector(selectSelectedProducts)
+    const products = useSelector(selectAllProducts)
+    const totalPrice = useSelector(selectSelectedProductTotalPrice)
 
-    useEffect(()=>{
-        const newSelectedProducts = products.filter(product => product.checked)
 
-        SetSelectedProducts(newSelectedProducts)
-    }, [products])
 
-    useEffect(() => {
-        const total = SelectedProducts.map(product => product.price).reduce((a, b) => a + b, 0)
-
-        setTotalPrice(total)
-
-    }, [SelectedProducts]
-    
-    )
-
-    function handleToggle (id, checked, name) {
+    function handleToggle (id) {
         const newProducts = products.map(product =>
-            product.id === id
-            ? { ...product,checked: !product.checked}
-            : product 
-        )
-
-        setProducts(newProducts)
-    }
+            dispatch(toggleProduct(id)))
+        }
 
     return <Wrapper>
         <Container>
@@ -61,7 +46,7 @@ function App () {
                 />}
                 
             right= {<div>
-                Estatisticas
+                statisticas
 
                 <LineChart 
                 color={colors[0]}
